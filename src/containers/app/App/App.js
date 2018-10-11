@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userInput } from '../actions';
+import { createStructuredSelector } from 'reselect';
+import { userInput, loadUserInputPending } from '../actions';
+import { makeSelectInput } from '../selectors';
 
 class App extends Component {
   render() {
     return (
       <div>
         User Input: <span />
-        <form>
+        <form onSubmit={this.props.onUserSubmit}>
           <input
             type="text"
             value={this.props.input}
@@ -21,15 +23,18 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    input: state.userInput
-  };
-};
+const mapStateToProps = createStructuredSelector({
+  input: makeSelectInput()
+});
 
 const mapDispatchToProps = dispatch => {
   return {
-    onUserInput: evt => dispatch(userInput(evt.target.value))
+    onUserInput: evt => dispatch(userInput(evt.target.value)),
+    onUserSubmit: evt => {
+      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+      dispatch(loadUserInputPending(evt.target.value));
+      console.log(`wowza`);
+    }
   };
 };
 
