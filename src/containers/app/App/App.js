@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { userInput, loadUserInputPending } from '../actions';
-import { makeSelectInput } from '../selectors';
+import {
+  makeSelectInput,
+  makeSelectLoadUserInputPending,
+  makeSelectLoadUserInputSuccess,
+  makeSelectLoadUserInputError
+} from '../selectors';
 
 class App extends Component {
   render() {
@@ -24,7 +29,10 @@ class App extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  input: makeSelectInput()
+  input: makeSelectInput(),
+  inputPending: makeSelectLoadUserInputPending(),
+  inputSuccess: makeSelectLoadUserInputSuccess(),
+  inputError: makeSelectLoadUserInputError()
 });
 
 const mapDispatchToProps = dispatch => {
@@ -33,7 +41,6 @@ const mapDispatchToProps = dispatch => {
     onUserSubmit: evt => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadUserInputPending(evt.target.value));
-      console.log(`wowza`);
     }
   };
 };

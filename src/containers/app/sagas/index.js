@@ -5,23 +5,17 @@ import { loadUserInputSuccess, loadUserInputError } from '../actions';
 import { LOAD_USER_INPUT_PENDING } from '../constants';
 
 function request(url, options) {
-  return fetch(url, options)
-    .then(response => response.text())
-    .then(res => JSON.stringify(res))
-    .catch(err => console.log(err));
+  return fetch(url, options).then(res => res.json());
 }
 
 export function* sendUserInput() {
   let input = yield select(makeSelectInput());
-  const url = 'http://localhost:1438';
-  console.log(`LSL`, input);
 
   try {
     const formatted = JSON.stringify(input);
+    const url = 'https://jsonplaceholder.typicode.com/posts';
     const query = yield call(request, url, {
-      method: 'POST',
-      body: formatted,
-      mode: 'no-cors'
+      method: 'GET'
     });
     yield put(loadUserInputSuccess(query));
   } catch (err) {
@@ -32,3 +26,24 @@ export function* sendUserInput() {
 export default function* rootSaga() {
   yield all([takeLatest(LOAD_USER_INPUT_PENDING, sendUserInput)]);
 }
+
+/*
+NOTE: fortified request handler, simplified version used in request function
+
+function parseJSON(response) {
+  if (response.status === 204 || response.status === 205) {
+    return null;
+  }
+  return response.json();
+}
+
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  }
+  const error = new Error(response.statusText);
+  error.response = response;
+  throw error;
+}
+
+*/
