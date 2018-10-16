@@ -16,13 +16,16 @@
     "reselect": "^4.0.0",
     "twitter": "^1.7.1"
   },
+  "engine": {
+    "node": "8.10.0"
+  },
   "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "cd src/containers/app/Twitter/server && yarn add && node index.js"
+    "heroku-postbuild": "cd src/containers/app/Twitter/server && yarn install && node index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
