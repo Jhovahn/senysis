@@ -3,6 +3,7 @@ import 'whatwg-fetch';
 import { makeSelectInput } from '../selectors';
 import { loadUserInputSuccess, loadUserInputError } from '../actions';
 import { LOAD_USER_INPUT_PENDING } from '../constants';
+import { getUserTimeLine } from '../Twitter';
 
 function request(url, options) {
   return fetch(url, options).then(res => res.json());
@@ -13,9 +14,10 @@ export function* sendUserInput() {
 
   try {
     const formatted = JSON.stringify(input);
-    const url = 'https://jsonplaceholder.typicode.com/posts';
+    const url = '/timeline';
     const query = yield call(request, url, {
-      method: 'GET'
+      method: 'POST',
+      body: formatted
     });
     yield put(loadUserInputSuccess(query));
   } catch (err) {
