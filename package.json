@@ -21,7 +21,7 @@
     "node": "8.10.0"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"cd src/containers/app/Twitter/server && PORT=3001 nodemon index.js\"",
+    "start": "concurrently \"react-scripts start\" \"cd src/containers/app/Twitter/server && PORT=3001\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
