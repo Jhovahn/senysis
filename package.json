@@ -14,19 +14,21 @@
     "redux": "^4.0.0",
     "redux-saga": "^0.16.2",
     "reselect": "^4.0.0",
-    "twitter": "^1.7.1"
+    "twitter": "^1.7.1",
+    "concurrently": "^3.1.0"
   },
   "engine": {
     "node": "8.10.0"
   },
-  "proxy": "http://localhost:3001",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"cd src/containers/app/Twitter/server && PORT=3001 nodemon index.js\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "cd src/containers/app/Twitter/server && yarn install"
+    "install": "yarn && (cd src/containers/app/Twitter/server && yarn)",
+    "heroku-postbuild": "cd src/containers/app/Twitter/server && yarn install && node index.js"
   },
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": "react-app"
   },
