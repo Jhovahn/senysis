@@ -21,11 +21,11 @@
     "node": "8.10.0"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"cd src/containers/app/Twitter/server && PORT=3001\"",
+    "start": "concurrently \"react-scripts start\" \"cd src/containers/app/Twitter/server && PORT=3001 nodemon index.js\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "cd src/containers/app/Twitter/server && yarn install && node index.js"
+    "heroku-postbuild": "cd src/containers/app/Twitter/server && yarn install"
   },
   "proxy": "http://localhost:3001",
   "eslintConfig": {
