@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 const Twitter = require('twitter');
 require('dotenv').config();
@@ -30,4 +30,4 @@ app.post('/timeline', (req, res) => {
   });
 });
 
-app.listen(port, () => console.log(`listening on port ${port}`));
+app.listen(PORT, () => console.log(`listening on port ${PORT}`));
