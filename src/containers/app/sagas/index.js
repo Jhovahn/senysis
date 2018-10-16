@@ -14,7 +14,7 @@ export function* sendUserInput() {
 
   try {
     const formatted = JSON.stringify(input);
-    const url = '/timeline';
+    const url = 'http://localhost:3001/timeline';
     const query = yield call(request, url, {
       method: 'POST',
       body: formatted
