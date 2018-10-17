@@ -17,7 +17,8 @@ export function* sendUserInput() {
     const url = 'http://localhost:3001/timeline';
     const query = yield call(request, url, {
       method: 'POST',
-      body: formatted
+      body: formatted,
+      tweet_mode: 'extended'
     });
     yield put(loadUserInputSuccess(query));
   } catch (err) {

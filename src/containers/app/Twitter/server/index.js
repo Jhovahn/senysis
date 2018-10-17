@@ -29,7 +29,7 @@ app.use(function(req, res, next) {
 
 app.post('/timeline', (req, res) => {
   let name = JSON.parse(req.body);
-  var params = { screen_name: name, count: 100 };
+  var params = { screen_name: name, count: 100, tweet_mode: 'extended' };
   client.get('statuses/user_timeline', params, (error, tweets, response) => {
     if (!error) {
       res.send(tweets);
