@@ -1,6 +1,5 @@
 import React from 'react';
 
-export const ListItem = props => {
-  console.log(`item`, props);
-  return <p>{props.item}</p>;
+export const ListItem = ({ item }) => {
+  return <p>{item}</p>;
 };
