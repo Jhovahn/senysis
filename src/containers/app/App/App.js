@@ -8,21 +8,20 @@ import {
   makeSelectLoadUserInputSuccess,
   makeSelectLoadUserInputError
 } from '../selectors';
+import { List } from '../../../components/List';
 
 class App extends Component {
   render() {
+    const { inputSuccess, onUserSubmit, onUserInput, input } = this.props;
     return (
       <div>
         User Input: <span />
-        <form onSubmit={this.props.onUserSubmit}>
-          <input
-            type="text"
-            value={this.props.input}
-            onChange={this.props.onUserInput}
-          />
+        <form onSubmit={onUserSubmit}>
+          <input type="text" value={input} onChange={onUserInput} />
           {console.log(this.props)}
-          <h1>{this.props.input}</h1>
+          <h1>@{input}</h1>
         </form>
+        {inputSuccess.length ? <List list={inputSuccess} /> : ''}
       </div>
     );
   }
