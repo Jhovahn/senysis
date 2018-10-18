@@ -18,15 +18,6 @@ const client = new Twitter({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
-
 app.post('/timeline', (req, res) => {
   let name = JSON.parse(req.body);
   var params = { screen_name: name, count: 100, tweet_mode: 'extended' };
