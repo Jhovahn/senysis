@@ -7378,6 +7378,10 @@ send@0.16.2:
     range-parser "~1.2.0"
     statuses "~1.4.0"
 
+sentiment@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/sentiment/-/sentiment-5.0.1.tgz#425030b2e8564281bb6f239e31dac4761315362e"
+
 serialize-javascript@^1.4.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-1.5.0.tgz#1aa336162c88a890ddad5384baebc93a655161fe"

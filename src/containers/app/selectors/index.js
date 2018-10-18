@@ -1,6 +1,9 @@
 import { createSelector } from 'reselect';
 import reducer from '../reducer';
 
+const Sentiment = require('sentiment');
+const sentiment = new Sentiment();
+
 const makeSelectInput = initialState =>
   createSelector(reducer, state => state.get('userInput'));
 
