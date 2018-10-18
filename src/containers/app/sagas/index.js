@@ -3,7 +3,6 @@ import 'whatwg-fetch';
 import { makeSelectInput } from '../selectors';
 import { loadUserInputSuccess, loadUserInputError } from '../actions';
 import { LOAD_USER_INPUT_PENDING } from '../constants';
-import { getUserTimeLine } from '../Twitter';
 
 function request(url, options) {
   return fetch(url, options).then(res => res.json());

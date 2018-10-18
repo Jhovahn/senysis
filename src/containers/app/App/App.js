@@ -44,13 +44,10 @@ class App extends Component {
         <h2>Twitter Handle + ENTER for Sentiment Analysis</h2>
         <form onSubmit={onUserSubmit}>
           <input type="text" value={input} onChange={onUserInput} />
-          {console.log(this.props)}
           <h2>@{input}</h2>
           {score ? <h2>Sentiment Score: {score}</h2> : ''}
         </form>
         {inputSuccess.length ? <List list={inputSuccess} /> : ''}
-        {console.log(sent)}
-        {console.log(`score`, score)}
       </div>
     );
   }

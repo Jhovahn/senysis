@@ -21,7 +21,6 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD_USER_INPUT_PENDING:
       return state.set('loadUserInputPending', true);
     case LOAD_USER_INPUT_SUCCESS:
-      console.log(`action`, action);
       return state
         .set('loadUserInputPending', false)
         .set('loadUserInputSuccess', action.response);
