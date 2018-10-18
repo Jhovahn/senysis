@@ -22,20 +22,14 @@
     "node": "8.10.0"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"cd src/containers/app/Twitter/server && PORT=3001 nodemon index.js\"",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix src/containers/app/Twitter/server && yarn build --prefix src/containers/app/Twitter/server"
+    "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }

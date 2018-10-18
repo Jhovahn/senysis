@@ -13,7 +13,7 @@ export function* sendUserInput() {
 
   try {
     const formatted = JSON.stringify(input);
-    const url = 'http://localhost:3001/timeline';
+    const url = 'https://sheltered-lake-88243.herokuapp.com/timeline';
     const query = yield call(request, url, {
       method: 'POST',
       body: formatted
