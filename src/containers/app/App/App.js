@@ -61,21 +61,22 @@ class App extends Component {
             onChange={onUserInput}
             placeholder="michelleobama"
           />
-          <h2>@{input}</h2>
-          {inputPending ? (
-            <h3>Loading...</h3>
-          ) : inputError ? (
-            <h3>Invalid Handle</h3>
-          ) : score ? (
-            <div>
-              <h3>Average Sentiment Score: {score}</h3>
-              <h3>Rating: {word}</h3>
-            </div>
-          ) : (
-            ''
-          )}
         </form>
-        {inputSuccess.length ? <List list={inputSuccess} /> : ''}
+
+        <h2>@{input}</h2>
+        {inputPending ? (
+          <h3>Loading...</h3>
+        ) : inputError ? (
+          <h3>Invalid Handle</h3>
+        ) : score ? (
+          <div>
+            <h3>Average Sentiment Score: {score}</h3>
+            <h3>Rating: {word}</h3>
+            {inputSuccess.length ? <List list={inputSuccess} /> : ''}
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     );
   }
