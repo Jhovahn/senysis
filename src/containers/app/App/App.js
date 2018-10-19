@@ -65,7 +65,7 @@ class App extends Component {
 
         <h2>@{input}</h2>
         {inputPending ? (
-          <h3>Loading...</h3>
+          <h3>loading...</h3>
         ) : inputError ? (
           <h3>Invalid Handle</h3>
         ) : score ? (
