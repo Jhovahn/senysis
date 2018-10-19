@@ -18,7 +18,8 @@ class App extends Component {
     if (score === 0) return 'NEUTRAL';
     if (score > 0 && score < 1) return 'SLIGHTLY POSITIVE';
     if (score >= 1 && score < 3) return 'POSITIVE';
-    if (score >= 3) return 'EXTREMELY POSITIVE';
+    if (score > 3 && score < 4) return 'VERY POSITIVE';
+    if (score > 4) return 'EXTREMELY POSITIVE';
     if (score < 0 && score > -1) return 'SLIGHTLY NEGATIVE';
     if (score < -1 && score > -3) return 'NEGATIVE';
     if (score <= -3) return 'EXTREMELY NEGATIVE';
@@ -54,9 +55,18 @@ class App extends Component {
         <h1 />
         <h2>Sentiment Analysis of latest Tweets by Twitter Handle</h2>
         <form onSubmit={onUserSubmit}>
-          <input type="text" value={input} onChange={onUserInput} />
+          <input
+            type="text"
+            value={input}
+            onChange={onUserInput}
+            placeholder="michelleobama"
+          />
           <h2>@{input}</h2>
-          {score ? (
+          {inputPending ? (
+            <h3>Loading...</h3>
+          ) : inputError ? (
+            <h3>Invalid Handle</h3>
+          ) : score ? (
             <div>
               <h3>Average Sentiment Score: {score}</h3>
               <h3>Rating: {word}</h3>
