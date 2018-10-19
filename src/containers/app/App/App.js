@@ -77,6 +77,12 @@ class App extends Component {
         ) : (
           ''
         )}
+        <a
+          href="https://linkedin.com/in/jhovahn"
+          style={{ 'text-decoration': 'none', 'padding-top': '10px' }}
+        >
+          <p style={{ 'padding-top': '10px' }}>Contact Me</p>
+        </a>
       </div>
     );
   }
