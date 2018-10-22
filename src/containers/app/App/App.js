@@ -65,17 +65,16 @@ class App extends Component {
       fontSize: '30px'
     };
 
+    const logoStyle = {
+      color: 'blue'
+    };
+
     return (
       <div className="text-center">
         <h2>
-          Tweet{' '}
-          <i>
-            <b>Sen</b>
-          </i>
+          Tweet <b style={logoStyle}>Sen</b>
           timent Anal
-          <i>
-            <b>ysis</b>
-          </i>{' '}
+          <b style={logoStyle}>ysis</b>{' '}
         </h2>
         <div>
           <ul style={{ listStyleType: 'none' }}>
