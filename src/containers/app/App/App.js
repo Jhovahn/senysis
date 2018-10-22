@@ -39,8 +39,7 @@ class App extends Component {
       inputError,
       onUserSubmit,
       onUserInput,
-      queryType,
-      onChangeQueryType
+      queryType
     } = this.props;
     const sent = inputPending
       ? 'loading...'
@@ -103,7 +102,6 @@ class App extends Component {
           />
         </form>
         <span />
-        {console.log(this.props)}
         <div style={{ paddingTop: '10px' }}>
           <button
             className="btn btn-outline-primary"
@@ -130,8 +128,6 @@ class App extends Component {
           <div>
             <p>loading...</p>
           </div>
-        ) : inputError ? (
-          <h3>Invalid Handle</h3>
         ) : score ? (
           <div>
             <h3>Average Sentiment Score: {score}</h3>

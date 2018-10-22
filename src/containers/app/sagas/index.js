@@ -17,26 +17,22 @@ export function* sendUserInput() {
 
   if (type === '@') {
     try {
-      url = 'http://localhost:3002/timeline';
-      // url = 'https://sheltered-lake-88243.herokuapp.com/timeline';
+      url = 'https://sheltered-lake-88243.herokuapp.com/timeline';
       query = yield call(request, url, {
         method: 'POST',
         body: formatted
       });
-      console.log(`timeline endpoint`, type);
       yield put(loadUserInputSuccess(query));
     } catch (err) {
       yield put(loadUserInputError(err));
     }
   } else if (type === '#') {
     try {
-      // url = 'https://sheltered-lake-88243.herokuapp.com/search';
-      url = 'http://localhost:3002/search';
+      url = 'https://sheltered-lake-88243.herokuapp.com/search';
       query = yield call(request, url, {
         method: 'POST',
         body: formatted
       });
-      console.log(`search endpoint`);
       yield put(loadUserInputSuccess(query));
     } catch (err) {
       yield put(loadUserInputError);
