@@ -4,6 +4,9 @@ import reducer from '../reducer';
 const makeSelectInput = initialState =>
   createSelector(reducer, state => state.get('userInput'));
 
+const makeSelectQueryType = initialState =>
+  createSelector(reducer, state => state.get('queryType'));
+
 const makeSelectLoadUserInputPending = initialState =>
   createSelector(reducer, state => state.get('loadUserInputPending'));
 
@@ -17,5 +20,6 @@ export {
   makeSelectInput,
   makeSelectLoadUserInputPending,
   makeSelectLoadUserInputSuccess,
-  makeSelectLoadUserInputError
+  makeSelectLoadUserInputError,
+  makeSelectQueryType
 };

@@ -2,9 +2,16 @@ import {
   USER_INPUT,
   LOAD_USER_INPUT_PENDING,
   LOAD_USER_INPUT_SUCCESS,
-  LOAD_USER_INPUT_ERROR
+  LOAD_USER_INPUT_ERROR,
+  QUERY_TYPE
 } from '../constants';
 
+export const queryType = input => {
+  return {
+    type: QUERY_TYPE,
+    input
+  };
+};
 export const userInput = input => {
   return {
     type: USER_INPUT,

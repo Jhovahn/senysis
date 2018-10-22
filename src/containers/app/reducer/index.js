@@ -2,7 +2,8 @@ import {
   USER_INPUT,
   LOAD_USER_INPUT_PENDING,
   LOAD_USER_INPUT_SUCCESS,
-  LOAD_USER_INPUT_ERROR
+  LOAD_USER_INPUT_ERROR,
+  QUERY_TYPE
 } from '../constants';
 
 import { fromJS } from 'immutable';
@@ -11,7 +12,8 @@ export const initialState = fromJS({
   userInput: '',
   loadUserInputPending: false,
   loadUserInputSuccess: false,
-  loadUserInputError: false
+  loadUserInputError: false,
+  queryType: '@'
 });
 
 export default function reducer(state = initialState, action = {}) {
@@ -28,6 +30,9 @@ export default function reducer(state = initialState, action = {}) {
       return state
         .set('loadUserInputPending', false)
         .set('loadUserInputError', action.response);
+    case QUERY_TYPE:
+      console.log(action);
+      return state.set('queryType', action.input);
     default:
       return state;
   }

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { userInput, loadUserInputPending } from '../actions';
+import { userInput, loadUserInputPending, queryType } from '../actions';
 import {
   makeSelectInput,
   makeSelectLoadUserInputPending,
   makeSelectLoadUserInputSuccess,
-  makeSelectLoadUserInputError
+  makeSelectLoadUserInputError,
+  makeSelectQueryType
 } from '../selectors';
 import { List } from '../../../components/List';
 
@@ -21,17 +22,25 @@ class App extends Component {
     if (score > 3 && score < 4) return 'VERY POSITIVE';
     if (score > 4) return 'EXTREMELY POSITIVE';
     if (score < 0 && score > -1) return 'SLIGHTLY NEGATIVE';
-    if (score < -1 && score > -3) return 'NEGATIVE';
+    if (score <= -1 && score > -3) return 'NEGATIVE';
     if (score <= -3) return 'EXTREMELY NEGATIVE';
   }
+
+  changeTypeResponse = evt => {
+    this.props.onChangeQueryType(evt);
+    this.props.onUserSubmit(evt);
+  };
+
   render() {
     const {
+      input,
       inputSuccess,
       inputPending,
       inputError,
       onUserSubmit,
       onUserInput,
-      input
+      queryType,
+      onChangeQueryType
     } = this.props;
     const sent = inputPending
       ? 'loading...'
@@ -49,23 +58,78 @@ class App extends Component {
           sent.length
         : false;
     const word = this.wordScore(score);
+    const styleInput = {
+      borderRadius: '5px',
+      height: '50px',
+      width: '40%',
+      padding: '10px',
+      fontSize: '30px'
+    };
 
     return (
       <div className="text-center">
-        <h1 />
-        <h2>Sentiment Analysis of latest Tweets by Twitter Handle</h2>
+        <h2>
+          Tweet{' '}
+          <i>
+            <b>Sen</b>
+          </i>
+          timent Anal
+          <i>
+            <b>ysis</b>
+          </i>{' '}
+        </h2>
+        <div>
+          <ul style={{ listStyleType: 'none' }}>
+            <li>Type in a Twitter user-handle or topic</li>
+            <li>
+              <strong>@</strong> for sentiment of user timeline
+            </li>
+            <li>
+              <strong>#</strong> for sentiment of topic-related tweets
+            </li>
+            <li>
+              Average sentiment score and rating will be generated and displayed
+            </li>
+            <li>Tweets used in analysis will also be listed</li>
+          </ul>
+        </div>
         <form onSubmit={onUserSubmit}>
           <input
             type="text"
             value={input}
             onChange={onUserInput}
             placeholder="michelleobama"
+            style={styleInput}
           />
         </form>
+        <span />
+        {console.log(this.props)}
+        <div style={{ paddingTop: '10px' }}>
+          <button
+            className="btn btn-outline-primary"
+            value="@"
+            onClick={this.changeTypeResponse}
+          >
+            @
+          </button>
+          {'   '}
+          <button
+            className="btn btn-outline-primary"
+            value="#"
+            onClick={this.changeTypeResponse}
+          >
+            #
+          </button>
+        </div>
 
-        <h2>@{input}</h2>
+        <h2>
+          {queryType}
+          {input}
+        </h2>
         {inputPending ? (
-          <h3>loading...</h3>
+          <div>
+            <p>loading...</p>
+          </div>
         ) : inputError ? (
           <h3>Invalid Handle</h3>
         ) : score ? (
@@ -79,9 +143,9 @@ class App extends Component {
         )}
         <a
           href="https://linkedin.com/in/jhovahn"
-          style={{ 'text-decoration': 'none', 'padding-top': '10px' }}
+          style={{ textDecoration: 'none', paddingTop: '10px' }}
         >
-          <p style={{ 'padding-top': '10px' }}>Contact Me</p>
+          <p style={{ paddingTop: '10px' }}>Contact Me</p>
         </a>
       </div>
     );
@@ -92,7 +156,8 @@ const mapStateToProps = createStructuredSelector({
   input: makeSelectInput(),
   inputPending: makeSelectLoadUserInputPending(),
   inputSuccess: makeSelectLoadUserInputSuccess(),
-  inputError: makeSelectLoadUserInputError()
+  inputError: makeSelectLoadUserInputError(),
+  queryType: makeSelectQueryType()
 });
 
 const mapDispatchToProps = dispatch => {
@@ -101,7 +166,8 @@ const mapDispatchToProps = dispatch => {
     onUserSubmit: evt => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadUserInputPending(evt.target.value));
-    }
+    },
+    onChangeQueryType: evt => dispatch(queryType(evt.target.value))
   };
 };
 

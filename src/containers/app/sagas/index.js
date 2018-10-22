@@ -1,6 +1,6 @@
 import { put, takeLatest, all, call, select } from 'redux-saga/effects';
 import 'whatwg-fetch';
-import { makeSelectInput } from '../selectors';
+import { makeSelectInput, makeSelectQueryType } from '../selectors';
 import { loadUserInputSuccess, loadUserInputError } from '../actions';
 import { LOAD_USER_INPUT_PENDING } from '../constants';
 
@@ -9,18 +9,38 @@ function request(url, options) {
 }
 
 export function* sendUserInput() {
-  let input = yield select(makeSelectInput());
+  let query;
+  let url;
+  const input = yield select(makeSelectInput());
+  const formatted = JSON.stringify(input);
+  const type = yield select(makeSelectQueryType());
 
-  try {
-    const formatted = JSON.stringify(input);
-    const url = 'https://sheltered-lake-88243.herokuapp.com/timeline';
-    const query = yield call(request, url, {
-      method: 'POST',
-      body: formatted
-    });
-    yield put(loadUserInputSuccess(query));
-  } catch (err) {
-    yield put(loadUserInputError(err));
+  if (type === '@') {
+    try {
+      url = 'http://localhost:3002/timeline';
+      // url = 'https://sheltered-lake-88243.herokuapp.com/timeline';
+      query = yield call(request, url, {
+        method: 'POST',
+        body: formatted
+      });
+      console.log(`timeline endpoint`, type);
+      yield put(loadUserInputSuccess(query));
+    } catch (err) {
+      yield put(loadUserInputError(err));
+    }
+  } else if (type === '#') {
+    try {
+      // url = 'https://sheltered-lake-88243.herokuapp.com/search';
+      url = 'http://localhost:3002/search';
+      query = yield call(request, url, {
+        method: 'POST',
+        body: formatted
+      });
+      console.log(`search endpoint`);
+      yield put(loadUserInputSuccess(query));
+    } catch (err) {
+      yield put(loadUserInputError);
+    }
   }
 }
 
