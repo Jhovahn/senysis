@@ -13,6 +13,12 @@ import { List } from '../../../components/List';
 
 const Sentiment = require('sentiment');
 const sentiment = new Sentiment();
+const style = {
+  background: `linear-gradient(to right bottom, white, #d7d2cc, #304352 )`,
+  minHeight: `100vh`,
+  overFlow: 'auto',
+  paddingBottom: '20px'
+};
 
 class App extends Component {
   wordScore(score) {
@@ -70,14 +76,18 @@ class App extends Component {
     };
 
     return (
-      <div className="text-center">
-        <h2>
-          Tweet <b style={logoStyle}>Sen</b>
-          timent Anal
+      <div className="text-center" style={style}>
+        <h1 style={logoStyle} className="display-1">
+          senysis
+        </h1>
+        <h2 className="display-4">
+          tweet <b style={logoStyle}>sen</b>
+          timent anal
           <b style={logoStyle}>ysis</b>{' '}
         </h2>
         <div>
           <ul style={{ listStyleType: 'none' }}>
+            <h4 style={{ fontStyle: '' }}>How to use...</h4>
             <li>Type in a Twitter user-handle or topic</li>
             <li>
               <strong>@</strong> for sentiment of user timeline
@@ -125,7 +135,7 @@ class App extends Component {
         </h2>
         {inputPending ? (
           <div>
-            <p>loading...</p>
+            <h4>loading...</h4>
           </div>
         ) : score ? (
           <div>

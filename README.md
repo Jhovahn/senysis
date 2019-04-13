@@ -1,3 +1,60 @@
+# Senysis (http://senysis.com)
+
+Senysis is an application that analyzes the sentiment of the last 100 tweets of a given user timeline or hashtag. The user types in the handle or topic and clicks '@' if a user handle is given or '#' if the sentiment for a hash tag is being requested. The app will return a calculated sentiment score, rating (positive, negative etc) and the tweets that were used in the calculation of the sentiment.
+
+## Getting Started
+
+From the root directory run:
+
+```
+npm run start
+```
+
+### Prequisites
+
+```
+Node.js - please find information on downloading node at https://nodejs.org
+```
+
+## Stack
+
+- React
+- Redux
+- Redux-Saga
+- Reselect
+- Twitter API
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](#running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
+
+See the section about [deployment](#deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -1485,7 +1542,7 @@ For example:
 const localStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
-  clear: jest.fn(),
+  clear: jest.fn()
 };
 global.localStorage = localStorageMock;
 ```
